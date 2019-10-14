@@ -4,7 +4,7 @@ import typescriptModule from '@nuxt/typescript-build'
 import storyblokRouterModule from '../../src'
 
 const config: Partial<Configuration> = {
-  rootDir: path.resolve(__dirname, '../../'),
+  rootDir: path.resolve(__dirname, '../..'),
   buildDIr: path.resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
 
@@ -12,9 +12,12 @@ const config: Partial<Configuration> = {
   modules: [[
     'storyblok-nuxt',
     {
-      accessToken: '7ntBTTO6zLJulQdsQnVgWAtt'
+      accessToken: 'TNChK6GTh7sMeOQKznLmQAtt'
     }
-  ]]
+  ]],
+  storyblokRouter: {
+    pagesDir: 'test/fixture/pages'
+  }
 }
 
 export default config

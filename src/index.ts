@@ -1,19 +1,30 @@
 
 import { Module } from '@nuxt/types'
-import StoryblokClient from 'storyblok-js-client'
-import { getPages, getRoutes } from './utils'
-import logger from './logger'
+import initOptions, { Options } from './options'
+import setupRoutes from './routes'
 
-interface Options {
+const nuxtStoryblokRouter: Module<Options> = function (moduleOptions) {
+  this.nuxt.hook('build:before', async () => {
+    const options = initOptions.call(this, moduleOptions)
+    await setupRoutes.call(this, options)
+  })
+}
+
+export default nuxtStoryblokRouter
+export const meta = require('../package.json')
+
+/* interface Options {
   accessToken: string,
   version: string,
-  pagesDir: string
+  pagesDir: string,
+  pageSlug: string
 }
 
 interface ModuleOptions {
   accessToken?: string,
   version?: string,
-  pagesDir?: string
+  pagesDir?: string,
+  pageSlug?: string
 }
 
 declare module '@nuxt/types' {
@@ -26,7 +37,8 @@ const nuxtStoryblokRouter: Module<ModuleOptions> = function (moduleOptions) {
   const defaultOptions: Options = {
     accessToken: '',
     version: 'published',
-    pagesDir: 'pages'
+    pagesDir: 'pages',
+    pageSlug: 'page/'
   }
 
   const options: Options = {
@@ -52,7 +64,7 @@ const nuxtStoryblokRouter: Module<ModuleOptions> = function (moduleOptions) {
   })
 
   this.nuxt.hook('build:before', async () => {
-    // Disable parsing `pages/`
+    Disable parsing `pages/`
     this.nuxt.options.build.createRoutes = () => {
       return []
     }
@@ -61,20 +73,19 @@ const nuxtStoryblokRouter: Module<ModuleOptions> = function (moduleOptions) {
       accessToken: options.accessToken
     })
 
-    // const space = await client.get('cdn/spaces/me')
-    // const { language_codes: languageCodes = [] } = space.data.space
+    const space = await client.get('cdn/spaces/me')
+    const { language_codes: languageCodes = [] } = space.data.space
 
     const pages = await getPages(client, options.version, 5)
+    const filteredRoutes = getRoutes(pages)
 
-    console.log(getRoutes(pages))
-
-    /* this.extendRoutes((routes: RouteConfig[]) => {
-      routes.push({
-        name: 'jojo'
+    this.extendRoutes((routes: NuxtRouteConfig[]) => {
+      filteredRoutes.forEach((route) => {
+        routes.push(route)
       })
-    }) */
+    })
   })
 }
 
 export default nuxtStoryblokRouter
-export const meta = require('../package.json')
+export const meta = require('../package.json') */
