@@ -41,12 +41,12 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
     const pages: StoryData[] = await getPages()
     const routes: NuxtRouteConfig[] = pages.map((story: StoryData) => {
       const name = story.is_startpage ? `${story.full_slug}-index` : story.full_slug
-      const path = story.full_slug
+      const path = options.startSlug && story.full_slug === options.startSlug ? '/' : story.full_slug
       const component = `${options.pagesDir}/${pascalCase(story.content.component)}`
 
       return {
         name: normalizeName(name),
-        path,
+        path: options.startSlug ? path.replace(options.startSlug, '') : path,
         component,
         chunkName: component
       }
