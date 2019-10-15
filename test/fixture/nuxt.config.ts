@@ -16,7 +16,8 @@ const config: Partial<Configuration> = {
     }
   ]],
   storyblokRouter: {
-    pagesDir: 'test/fixture/pages'
+    pagesDir: 'test/fixture/pages',
+    defaultLanguage: 'de'
   }
 }
 

@@ -5,14 +5,18 @@ export interface Options {
   accessToken?: string
   version?: string
   pagesDir?: string
-  startSlug?: string
+  startSlug?: string,
+  generateDefaultPaths?: boolean
+  defaultLanguage?: string
 }
 
-export const defaults = {
+export const defaults: Options = {
   accessToken: '',
   version: 'published',
   pagesDir: 'pages',
-  startSlug: 'page/'
+  startSlug: 'page',
+  generateDefaultPaths: true,
+  defaultLanguage: ''
 }
 
 export default function initOptions (this: ModuleThis, moduleOptions?: Options): Required<Options> {
