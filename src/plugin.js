@@ -1,8 +1,6 @@
 export default (ctx) => {
   ctx.app.storyblokRouter = {}
   ctx.$storyblokRouter = {
-    test: 123
+    startSlug: '<%= options.startSlug %>'
   }
-
-  console.log(ctx)
 }

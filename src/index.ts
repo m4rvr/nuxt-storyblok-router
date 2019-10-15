@@ -14,13 +14,13 @@ const nuxtStoryblokRouter: Module<Options> = function (moduleOptions) {
   this.nuxt.hook('build:before', async () => {
     const options = initOptions.call(this, moduleOptions)
     await setupRoutes.call(this, options)
-  })
 
-  this.addPlugin({
-    src: path.resolve(__dirname, 'plugin.js'),
-    options: {
-      test: 'test'
-    }
+    this.addPlugin({
+      src: path.resolve(__dirname, 'plugin.js'),
+      options: {
+        uuid: options.startSlug
+      }
+    })
   })
 }
 
