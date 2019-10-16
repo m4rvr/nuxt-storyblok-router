@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Works!</h1>
+    <h2>{{ story.content.title }}</h2>
   </div>
 </template>
 
@@ -10,11 +11,12 @@ export default {
     const languages = ['de', 'en']
     return typeof params.lang === 'undefined' || languages.includes(params.lang)
   },
-  asyncData (context) {
-    console.log(context)
-    /* const story = await app.$storyapi.get(`cdn/stories/${route.path}`)
+  async asyncData ({ app }) {
+    const response = await app.$storyapi.get(`cdn/stories/${app.$storyblokRouter.getRoutePath()}`)
 
-    console.log(story) */
+    return {
+      story: response.data.story
+    }
   }
 }
 </script>

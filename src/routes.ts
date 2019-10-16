@@ -59,10 +59,7 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
         name: normalizeName(name.replace(options.startSlug!, '')),
         path,
         component,
-        chunkName: component,
-        props: {
-          storyUuid: story.uuid
-        }
+        chunkName: component
       }
     })
 
