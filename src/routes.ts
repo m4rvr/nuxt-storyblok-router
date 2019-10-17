@@ -5,6 +5,7 @@ import { NuxtConfigurationGenerateRoute } from '@nuxt/types/config/generate'
 import StoryblokClient, { StoryData, StoryblokResult } from 'storyblok-js-client'
 import { Options } from './options'
 import { pascalCase, normalizeName } from './utils'
+import logger from './logger'
 
 export default async function setupRoutes (this: ModuleThis, options: Options) {
   // Disable parsing `pages/`
@@ -93,6 +94,7 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
 
   const pages: StoryData[] = await getPages()
   const storyblokRoutes = buildRoutes()
+  const dynamicRoutes: NuxtConfigurationGenerateRoute[] = buildDynamicRoutes()
 
   this.extendRoutes((routes: NuxtRouteConfig[]) => {
     storyblokRoutes.forEach((route: NuxtRouteConfig) => {
@@ -101,8 +103,6 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
   })
 
   this.nuxt.hook('generate:extendRoutes', (routes: NuxtConfigurationGenerateRoute[]) => {
-    const dynamicRoutes: NuxtConfigurationGenerateRoute[] = buildDynamicRoutes()
-
     routes.splice(0, routes.length)
     routes.push(...dynamicRoutes)
   })
@@ -114,4 +114,29 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
       languageCodes
     }
   })
+
+  if (options.sitemap) {
+    const sitemapModule = this.requiredModules['@nuxtjs/sitemap']
+
+    if ((sitemapModule && sitemapModule.options) || this.options.sitemap) {
+      logger.warn('Separate `@nuxtjs/sitemap` configuration found. Set it in `storyblokRouter.sitemap` for correct behavior.')
+    }
+
+    if (typeof options.sitemap !== 'object') {
+      options.sitemap = {}
+    }
+
+    const sitemapOptions = {
+      ...options.sitemap,
+      routes: dynamicRoutes.map((route) => {
+        if (typeof route === 'object') {
+          return route.route
+        }
+
+        return route
+      })
+    }
+
+    this.requireModule(['@nuxtjs/sitemap', sitemapOptions])
+  }
 }

@@ -665,6 +665,14 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime-corejs3@^7.4.5":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.6.3.tgz#a2b2b7ceea6ecb37ff822d293a312f1f00c29b84"
+  integrity sha512-933SXHQr7apa95F+3IqkBne8mqOnu1kDh6dnSddC07aW/R51WsOVD7MSczJ6DRpq/L8KLll7TFDxmt30pft44w==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@^7.6.3":
   version "7.6.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.3.tgz#935122c74c73d2240cafd32ddb5fc2a6cd35cf1f"
@@ -3413,6 +3421,11 @@ core-js-compat@^3.1.1:
   dependencies:
     browserslist "^4.6.6"
     semver "^6.3.0"
+
+core-js-pure@^3.0.0:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.3.2.tgz#ace92f9744ef1f6129f73ac4df4936b6df9a3cbe"
+  integrity sha512-sw695hB0UxFXrSkUthEby5tMdjOYN3hVC8IGQePF1m3JYb9e/KjT0TOFWzaSzlKwGNglKCgLYUjiJ7uZvactiw==
 
 core-js@^2.4.0, core-js@^2.5.0, core-js@^2.6.5:
   version "2.6.9"
@@ -9755,7 +9768,7 @@ stealthy-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-storyblok-js-client@^1.0.12, storyblok-js-client@^1.0.34:
+storyblok-js-client@^1.0.34:
   version "1.0.34"
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-1.0.34.tgz#bc6076f052c5e820d8779a7e0fe1b3f22e18993e"
   integrity sha512-8Jj9G7lcLT3wiTxs7UCctWAmazLdXS7qqjNe0QZ0qF2c9fnDbcBlF7MOgvkI48/8tVs8PvEITWfUVFKUH3K6JA==
@@ -9764,12 +9777,21 @@ storyblok-js-client@^1.0.12, storyblok-js-client@^1.0.34:
     axios "^0.19.0"
     qs "^6.5.2"
 
-storyblok-nuxt@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/storyblok-nuxt/-/storyblok-nuxt-1.0.1.tgz#0e4ccc64a54cfa76b79d73b87b237443db79d71b"
-  integrity sha512-PWsX0FWLyVGK1VJozVCTMpWScfz8ToY41z3ymcoe5QMFgvTgaVUj0Xhz9teVRBpEQZLzj4RPKyuqzFO1MI/bIg==
+storyblok-js-client@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-2.0.8.tgz#e33b3393a280709d472afc57d5b7c291b283a4dd"
+  integrity sha512-mdKYzJJ71SbS8aMGSFkyM99fCozuP8p7qinw7lkinxMLcht3wEH2wAK1adA5xVTqsW7Tjrbd2VX45+5SzpmJQg==
   dependencies:
-    storyblok-js-client "^1.0.12"
+    "@babel/runtime-corejs3" "^7.4.5"
+    axios "^0.19.0"
+    qs "^6.5.2"
+
+storyblok-nuxt@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/storyblok-nuxt/-/storyblok-nuxt-1.0.2.tgz#fd9e030e9eef13677f04ebd1ea84af2e25692a6c"
+  integrity sha512-g1tUZm0lvrwMzg+QPCC+T+SEkX0Z2mYzK+HyKih/jN8kTQ6FYQyNGJSf22+oa/OdZHgE0Cncfd4Wgj8dsBpKQQ==
+  dependencies:
+    storyblok-js-client "^1.0.34"
     storyblok-vue "^1.0.4"
 
 storyblok-vue@^1.0.4:

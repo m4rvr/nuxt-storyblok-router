@@ -7,7 +7,8 @@ export interface Options {
   pagesDir?: string
   startSlug?: string,
   generateDefaultPaths?: boolean
-  defaultLanguage?: string
+  defaultLanguage?: string,
+  sitemap?: boolean | object
 }
 
 export const defaults: Options = {
@@ -16,12 +17,14 @@ export const defaults: Options = {
   pagesDir: 'pages',
   startSlug: 'page',
   generateDefaultPaths: true,
-  defaultLanguage: ''
+  defaultLanguage: '',
+  sitemap: false
 }
 
 export default function initOptions (this: ModuleThis, moduleOptions?: Options): Required<Options> {
   const options = {
     ...defaults,
+    ...this.options.storyblok,
     ...this.options.storyblokRouter,
     ...moduleOptions
   } as Required<Options>
