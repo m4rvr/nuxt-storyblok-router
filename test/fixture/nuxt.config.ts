@@ -9,12 +9,11 @@ const config: Partial<Configuration> = {
   srcDir: __dirname,
 
   buildModules: [typescriptModule, storyblokRouterModule],
-  modules: [[
-    'storyblok-nuxt',
-    {
+  modules: [
+    ['storyblok-nuxt', {
       accessToken: 'TNChK6GTh7sMeOQKznLmQAtt'
-    }
-  ]],
+    }]
+  ],
   storyblokRouter: {
     pagesDir: 'test/fixture/pages',
     defaultLanguage: 'de'
