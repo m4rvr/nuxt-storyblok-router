@@ -1,3 +1,4 @@
+import path from 'path'
 import { ModuleThis } from '@nuxt/types/config/module'
 import { NuxtRouteConfig } from '@nuxt/types/config/router'
 import { NuxtConfigurationGenerateRoute } from '@nuxt/types/config/generate'
@@ -104,5 +105,13 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
 
     routes.splice(0, routes.length)
     routes.push(...dynamicRoutes)
+  })
+
+  this.addPlugin({
+    src: path.resolve(__dirname, 'plugin.ts'),
+    options: {
+      startSlug: options.startSlug,
+      languageCodes
+    }
   })
 }

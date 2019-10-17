@@ -7,9 +7,8 @@
 
 <script>
 export default {
-  validate ({ params }) {
-    const languages = ['de', 'en']
-    return typeof params.lang === 'undefined' || languages.includes(params.lang)
+  validate ({ $storyblokRouter }) {
+    return $storyblokRouter.validateRoute()
   },
   async asyncData ({ app }) {
     const response = await app.$storyapi.get(`cdn/stories/${app.$storyblokRouter.getRoutePath()}`)
