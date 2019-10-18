@@ -108,7 +108,7 @@ export default async function setupRoutes (this: ModuleThis, options: Options) {
   })
 
   this.addPlugin({
-    src: path.resolve(__dirname, 'plugin.ts'),
+    src: path.resolve(__dirname, '../templates', 'plugin.js'),
     options: {
       startSlug: options.startSlug,
       languageCodes

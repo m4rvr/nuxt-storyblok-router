@@ -1,12 +1,5 @@
-import { Plugin } from '@nuxt/types'
-
-export interface StoryblokRouterPlugin {
-  getRoutePath: () => string
-  validateRoute: () => boolean
-}
-
-const storyblokRouterPlugin: Plugin = function (context) {
-  const pluginData: StoryblokRouterPlugin = {
+export default function (context) {
+  const pluginData = {
     getRoutePath: () => {
       const { route } = context
       const routeLang = route.params.lang
@@ -31,5 +24,3 @@ const storyblokRouterPlugin: Plugin = function (context) {
     ...pluginData
   }
 }
-
-export default storyblokRouterPlugin

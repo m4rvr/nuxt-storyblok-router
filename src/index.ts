@@ -1,6 +1,6 @@
 
 import { Module } from '@nuxt/types'
-import { StoryblokRouterPlugin } from './plugin'
+import { StoryblokRouterPlugin } from '../types/plugin'
 import initOptions, { Options } from './options'
 import setupRoutes from './routes'
 
