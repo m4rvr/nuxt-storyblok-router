@@ -11,7 +11,7 @@ const config: Partial<Configuration> = {
   buildModules: [typescriptModule, storyblokRouterModule],
   modules: [
     ['storyblok-nuxt', {
-      accessToken: 'TNChK6GTh7sMeOQKznLmQAtt'
+      accessToken: ''
     }]
   ],
   storyblokRouter: {
